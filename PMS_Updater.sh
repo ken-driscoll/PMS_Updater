@@ -6,7 +6,7 @@ VERBOSE=1
 REMOVE=1
 LOGGING=1
 
-PLEXTOKEN="$(sed -n 's/.*PlexOnlineToken="//p' /Plex\ Media\ Server/Preferences.xml | sed 's/\".*//')"
+PLEXTOKEN="$(sed -n 's/.*PlexOnlineToken="//p' /config/Plex\ Media\ Server/Preferences.xml | sed 's/\".*//')"
 BASEURL="https://plex.tv/api/downloads/5.json"
 TOKENURL="$BASEURL?channel=plexpass&X-Plex-Token=$PLEXTOKEN"
 DOWNLOADPATH="/tmp"
