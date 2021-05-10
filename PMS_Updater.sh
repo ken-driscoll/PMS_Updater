@@ -132,8 +132,8 @@ findLatest()
     if [ $VERBOSE = 1 ]; then echo Using URL $BASEURL; fi
 
     echo Searching $BASEURL for the FreeBSD download URL ..... | LogMsg -n
-    DOWNLOADURL="$(fetch -q $TOKENURL -o- | $PMSPARENTPATH/$PMSLIVEFOLDER/Plex\ Script\ Host -c 'import sys, json; myobj = json.load(sys.stdin); print(myobj["computer"]["FreeBSD"]["releases"][0]["url"]);')"
-
+    DOWNLOADURL="$(fetch -q $TOKENURL -o- | jq -r '.computer.FreeBSD.releases[0].url')"
+    
     if [ "x$DOWNLOADURL" = "x" ]; then {
         # DOWNLOADURL is zero length, i.e. nothing matched PMSPATTERN. Error and exit
         echo Could not find a FreeBSD download link on page $TOKENURL | LogMsg -f
